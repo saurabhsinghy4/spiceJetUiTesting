@@ -25,5 +25,9 @@ public abstract class BasePage {
             return false;
         }
     }
+
+    protected void click(By locator) {
+        waitVisible(locator).click();
+    }
 }
 

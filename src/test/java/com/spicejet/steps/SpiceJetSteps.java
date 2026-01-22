@@ -21,11 +21,6 @@ public class SpiceJetSteps {
         homePage.open();
     }
 
-    @When("I open the prefilled SpiceJet search for two adults and one child")
-    public void open_prefilled_search_two_adults_one_child() {
-        homePage.openPrefilledSearchForTwoAdultsOneChild();
-    }
-
     @Then("the page title should contain {string}")
     public void title_should_contain(String expected) {
         String actual = homePage.title();
@@ -35,15 +30,6 @@ public class SpiceJetSteps {
         );
     }
 
-    @Then("the search URL should reflect DEL to LKO with two adults and one child")
-    public void search_url_should_reflect_params() {
-        String url = homePage.currentUrl();
-        Assert.assertTrue(url.contains("from=DEL"), "URL does not contain from=DEL. Actual: " + url);
-        Assert.assertTrue(url.contains("to=LKO"), "URL does not contain to=LKO. Actual: " + url);
-        Assert.assertTrue(url.contains("adult=2"), "URL does not contain adult=2. Actual: " + url);
-        Assert.assertTrue(url.contains("child=1"), "URL does not contain child=1. Actual: " + url);
-    }
-
     @Then("the page should show a visible {string} entry point")
     public void should_show_login(String expected) {
         // For now we only validate Login, but keep step readable.
@@ -51,6 +37,11 @@ public class SpiceJetSteps {
             throw new IllegalArgumentException("Only 'Login' is implemented right now. Got: " + expected);
         }
         Assert.assertTrue(homePage.isLoginVisible(), "Login entry point was not visible.");
+    }
+
+    @When("I select {int} adult(s) and {int} child(ren) as passengers")
+    public void select_passengers(int adults, int children) {
+        homePage.selectPassengers(adults, children);
     }
 }
 
