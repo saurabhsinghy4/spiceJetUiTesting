@@ -23,8 +23,20 @@ public class SpiceJetHomePage extends BasePage {
         driver.get(Config.getRequired("baseUrl"));
     }
 
+    /**
+     * Opens a pre-filled search for DEL -> LKO, one-way on 2026-02-14
+     * with 2 adults and 1 child, matching the provided URL.
+     */
+    public void openPrefilledSearchForTwoAdultsOneChild() {
+        driver.get("https://www.spicejet.com/search?from=DEL&to=LKO&tripType=1&departure=2026-02-14&adult=2&child=1&srCitizen=0&infant=0&currency=INR&redirectTo=/");
+    }
+
     public String title() {
         return driver.getTitle();
+    }
+
+    public String currentUrl() {
+        return driver.getCurrentUrl();
     }
 
     public boolean isLoginVisible() {
